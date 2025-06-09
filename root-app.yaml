@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/shukawam/manifests
+    repoURL: https://github.com/shukawam/kong-cluster
     path: app
     targetRevision: HEAD
   destination:
