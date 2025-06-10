@@ -14,6 +14,7 @@ nodeGroups:
     minSize: 1
     maxSize: 3
     iam:
+      withOIDC: true
       withAddonPolicies:
         autoScaler: true
         cloudWatch: true
