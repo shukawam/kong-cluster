@@ -10,6 +10,7 @@ spec:
       kind: Gateway
       name: kong-gateway
       namespace: kong
+      sectionName: https
   rules:
     - matches:
         - path:
