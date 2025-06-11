@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kong-operator
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: kong
+  source:
+    repoURL: https://charts.konghq.com
+    chart: gateway-operator
+    targetRevision: 0.6.1
+    helm:
+      values: |
+        image:
+          tag: "1.6"
+        # Install Gateway API standard CRDs
+        gwapi-standard-crds:
+          enabled: true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kong
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
