@@ -6,8 +6,9 @@ metadata:
 spec:
   description: Project for Kong related resources
   destinations:
-    - name: in-cluster
-      namespace: kong
+    - namespace: kong
+      server: https://kubernetes.default.svc
+    - namespace: kong-system
       server: https://kubernetes.default.svc
   clusterResourceWhitelist:
     - group: "*"
