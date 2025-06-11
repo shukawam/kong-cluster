@@ -6,6 +6,7 @@ spec:
   gatewayClassName: kong
   listeners:
     - name: http
+      hostname: "*.shukawam.me"
       protocol: HTTP
       port: 80
       allowedRoutes:
@@ -14,3 +15,13 @@ spec:
           selector:
             matchLabels:
               shared-gateway-access: "true"
+    # - name: https
+    #   hostname: "*.shukawam.me"
+    #   protocol: HTTPS
+    #   port: 443
+    #   allowedRoutes:
+    #     namespaces:
+    #       from: Selector
+    #       selector:
+    #         matchLabels:
+    #           shared-gateway-access: "true"
