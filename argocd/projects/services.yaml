@@ -4,7 +4,7 @@ metadata:
   name: services
   namespace: argocd
 spec:
-  description: Project for Kong related resources
+  description: Project for services related resources
   destinations:
     - namespace: services
       server: https://kubernetes.default.svc
