@@ -2,6 +2,8 @@ kind: Gateway
 apiVersion: gateway.networking.k8s.io/v1
 metadata:
   name: kong-gateway
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   gatewayClassName: kong
   listeners:
@@ -15,13 +17,17 @@ spec:
           selector:
             matchLabels:
               shared-gateway-access: "true"
-    # - name: https
-    #   hostname: "*.shukawam.me"
-    #   protocol: HTTPS
-    #   port: 443
-    #   allowedRoutes:
-    #     namespaces:
-    #       from: Selector
-    #       selector:
-    #         matchLabels:
-    #           shared-gateway-access: "true"
+    - name: https
+      hostname: "*.shukawam.me"
+      protocol: HTTPS
+      port: 443
+      allowedRoutes:
+        namespaces:
+          from: Selector
+          selector:
+            matchLabels:
+              shared-gateway-access: "true"
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: shukawam-tls-secret-kong-gateway
