@@ -1,0 +1,53 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kube-prometheus-stack
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: observability
+  source:
+    repoURL: https://prometheus-community.github.io/helm-charts
+    chart: kube-prometheus-stack
+    targetRevision: 73.1.0
+    helm:
+      values: |
+        prometheus:
+          prometheusSpec:
+            scrapeInterval: 10s
+            evaluationInterval: 30s
+        grafana:
+          persistence:
+            enabled: true  # enable persistence using Persistent Volumes
+          dashboardProviders:
+            dashboardproviders.yaml:
+              apiVersion: 1
+              providers:
+              - name: 'default' # Configure a dashboard provider file to
+                orgId: 1        # put Kong dashboard into.
+                folder: ''
+                type: file
+                disableDeletion: false
+                editable: true
+                options:
+                  path: /var/lib/grafana/dashboards/default
+          dashboards:
+            default:
+              kong-dashboard:
+                gnetId: 7424  # Install the following Grafana dashboard in the
+                revision: 11  # instance: https://grafana.com/dashboards/7424
+                datasource: Prometheus
+              kic-dashboard:
+                gnetId: 15662
+                datasource: Prometheus
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: observability
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
