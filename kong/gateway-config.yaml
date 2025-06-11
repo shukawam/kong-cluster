@@ -2,7 +2,6 @@ kind: GatewayConfiguration
 apiVersion: gateway-operator.konghq.com/v1beta1
 metadata:
   name: gateway-config
-  namespace: kong
 spec:
   dataPlaneOptions:
     deployment:

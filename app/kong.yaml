@@ -13,7 +13,7 @@ spec:
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
-    namespace: services
+    namespace: kong
   syncPolicy:
     automated:
       prune: true
