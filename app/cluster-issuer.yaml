@@ -9,7 +9,7 @@ spec:
   project: management
   source:
     repoURL: https://github.com/shukawam/kong-cluster
-    path: cert-manager/issuer
+    path: cert-manager
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
