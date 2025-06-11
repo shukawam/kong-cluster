@@ -6,8 +6,9 @@ metadata:
 spec:
   description: Project for observability related resources
   destinations:
-    - name: in-cluster
-      namespace: observability
+    - namespace: observability
+      server: https://kubernetes.default.svc
+    - namespace: kube-system
       server: https://kubernetes.default.svc
   clusterResourceWhitelist:
     - group: "*"
