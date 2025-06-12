@@ -11,6 +11,11 @@ spec:
     repoURL: https://grafana.github.io/helm-charts
     chart: loki-stack
     targetRevision: 2.10.2
+    helm:
+      values: |
+        loki:
+          config:
+            auth_enabled: false
   destination:
     server: https://kubernetes.default.svc
     namespace: observability
