@@ -2,15 +2,17 @@ kind: HTTPRoute
 apiVersion: gateway.networking.k8s.io/v1
 metadata:
   name: echo
+  annotations:
+    konghq.com/strip-path: "true"
 spec:
   hostnames:
     - echo.shukawam.me
   parentRefs:
     - group: gateway.networking.k8s.io
       kind: Gateway
-      name: kong-gateway
+      name: kong
       namespace: kong
-      sectionName: https
+      sectionName: http
   rules:
     - matches:
         - path:
