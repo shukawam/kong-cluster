@@ -29,8 +29,8 @@ spec:
         tls:
           insecure: true
       # --- Metrics ---
-      prometheus:
-        endpoint: 0.0.0.0:8889
+      # prometheus:
+      #   endpoint: 0.0.0.0:8889
       # --- Log ---
       otlp/loki:
         endpoint: loki-stack:3100/otlp/v1/logs
@@ -43,9 +43,9 @@ spec:
           receivers: [otlp]
           processors: [memory_limiter, batch]
           exporters: [debug, otlp/tempo]
-        metrics:
-          receivers: [otlp]
-          exporters: [debug, prometheus]
+        # metrics:
+        #   receivers: [otlp]
+        #   exporters: [debug, prometheus]
         logs:
           receivers: [otlp]
           processors: [memory_limiter, batch]
