@@ -33,7 +33,7 @@ spec:
       #   endpoint: 0.0.0.0:8889
       # --- Log ---
       otlphttp/loki:
-        endpoint: loki-stack:3100/otlp
+        endpoint: http://loki-stack:3100/otlp
         tls:
           insecure: true
 
