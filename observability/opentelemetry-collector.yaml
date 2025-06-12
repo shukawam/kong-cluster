@@ -35,7 +35,7 @@ spec:
       otlp/loki:
         endpoint: loki-stack:3100/otlp/v1/logs
         tls:
-        insecure: true
+          insecure: true
 
     service:
       pipelines:
