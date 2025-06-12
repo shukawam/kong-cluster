@@ -32,6 +32,20 @@ spec:
                 editable: true
                 options:
                   path: /var/lib/grafana/dashboards/default
+          datasources:
+            datasources.yaml:
+              apiVersion: 1
+              datasources:
+                - name: Prometheus
+                  type: prometheus
+                  url: http://kube-prometheus-stack-prometheus:9090
+                  isDefault: true
+                - name: Loki
+                  type: loki
+                  url: http://loki-stack:3100
+                - name: Tempo
+                  type: tempo
+                  url: http://tempo:3100
           dashboards:
             default:
               kong-dashboard:
