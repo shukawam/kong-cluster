@@ -14,8 +14,9 @@ spec:
     helm:
       values: |
         loki:
-          config:
-            auth_enabled: false
+          image:
+            # see: https://github.com/grafana/loki/issues/11557#issuecomment-2014825845
+            tag: 2.9.3 
   destination:
     server: https://kubernetes.default.svc
     namespace: observability
