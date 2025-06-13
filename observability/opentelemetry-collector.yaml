@@ -42,11 +42,11 @@ spec:
         traces:
           receivers: [otlp]
           processors: [memory_limiter, batch]
-          exporters: [debug, otlp/tempo]
+          exporters: [otlp/tempo]
         # metrics:
         #   receivers: [otlp]
         #   exporters: [debug, prometheus]
         logs:
           receivers: [otlp]
           processors: [memory_limiter, batch]
-          exporters: [debug, otlphttp/loki]
+          exporters: [debug]
