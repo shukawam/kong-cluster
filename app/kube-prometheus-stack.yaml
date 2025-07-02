@@ -18,6 +18,17 @@ spec:
             scrapeInterval: 10s
             evaluationInterval: 30s
         grafana:
+          ingress:
+            enabled: true
+            ingressClassName: kong
+            annotations:
+              cert-manager.io/cluster-issuer: letsencrypt-prod
+            hosts:
+              - grafana.shukawam.me
+            tls:
+              - secretName: shukawam-me-grafana-tls
+                hosts:
+                  - grafana.shukawam.me
           persistence:
             enabled: true  # enable persistence using Persistent Volumes
           dashboardProviders:
