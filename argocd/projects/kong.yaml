@@ -10,7 +10,7 @@ spec:
       server: https://kubernetes.default.svc
     - namespace: kong-system
       server: https://kubernetes.default.svc
-    - namespace: kuma-mesh-system
+    - namespace: kong-mesh-system
       server: https://kubernetes.default.svc
     - namespace: services
       server: https://kubernetes.default.svc
