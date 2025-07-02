@@ -43,15 +43,15 @@ spec:
               use_pkce: true
               use_refresh_token: true
               role_attribute_path: contains(https://shukawam.me/groups[*], 'grafana-admins') && 'Admin' || contains(https://shukawam.me/groups[*], 'grafana-guests') && 'Editor' || 'Viewer'
-            envValueFrom:
-              GF_AUTH_GENERIC_OAUTH_CLIENT_ID:
-                secretKeyRef:
-                  name: grafana-auth0-secret
-                  key: client_id
-              GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET:
-                secretKeyRef:
-                  name: grafana-auth0-secret
-                  key: client_secret
+          envValueFrom:
+            GF_AUTH_GENERIC_OAUTH_CLIENT_ID:
+              secretKeyRef:
+                name: grafana-auth0-secret
+                key: client_id
+            GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET:
+              secretKeyRef:
+                name: grafana-auth0-secret
+                key: client_secret
           persistence:
             enabled: true  # enable persistence using Persistent Volumes
           dashboardProviders:
