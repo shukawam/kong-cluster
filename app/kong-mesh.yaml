@@ -18,7 +18,7 @@ spec:
             secrets:
               - Env: KMESH_LICENSE_INLINE
                 Secret: kong-mesh-license
-                key: license.json
+                Key: license.json
             ingress:
               enabled: true
               ingressClassName: kong
