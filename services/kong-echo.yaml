@@ -41,6 +41,7 @@ spec:
     metadata:
       labels:
         app: echo
+        kuma.io/sidecar-injection: disabled
     spec:
       containers:
         - image: kong/go-echo:latest
