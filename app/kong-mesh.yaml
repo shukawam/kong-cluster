@@ -23,8 +23,6 @@ spec:
               enabled: true
               ingressClassName: kong
               hostName: kong-mesh.shukawam.me
-              annotations:
-                cert-manager.io/cluster-issuer: letsencrypt-prod
             serviceMonitor:
               enabled: true
               labels:
