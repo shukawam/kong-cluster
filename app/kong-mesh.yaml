@@ -25,9 +25,6 @@ spec:
               enabled: true
               labels:
                 release: kube-prometheus-stack
-            tls:
-              general:
-                secretName: shukawam-me-kong-mesh-tls
   destination:
     server: https://kubernetes.default.svc
     namespace: kong-mesh-system
