@@ -22,8 +22,7 @@ spec:
                 Secret: kong-mesh-license
                 Key: license.json
             envVars:
-              - name: KUMA_TRACING_OPENTELEMETRY_ENABLED
-                value: true
+              KUMA_TRACING_OPENTELEMETRY_ENABLED: true
             ingress:
               enabled: true
               ingressClassName: kong
