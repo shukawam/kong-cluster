@@ -15,18 +15,19 @@ spec:
       values: |
         kuma:
           controlPlane:
+            extraLabels:
+              prometheus.io/scrape: true
             secrets:
               - Env: KMESH_LICENSE_INLINE
                 Secret: kong-mesh-license
                 Key: license.json
+            envVars:
+              - name: KUMA_TRACING_OPENTELEMETRY_ENABLED
+                value: true
             ingress:
               enabled: true
               ingressClassName: kong
               hostName: kong-mesh.shukawam.me
-            serviceMonitor:
-              enabled: true
-              labels:
-                release: kube-prometheus-stack
   destination:
     server: https://kubernetes.default.svc
     namespace: kong-mesh-system
