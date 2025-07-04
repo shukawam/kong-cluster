@@ -17,6 +17,22 @@ spec:
           prometheusSpec:
             scrapeInterval: 10s
             evaluationInterval: 30s
+            additionalScrapeConfigs:
+              - job_name: kuma-dataplanes
+                scrape_interval: 5s
+                relabel_configs:
+                  - source_labels:
+                      - __meta_kuma_mesh
+                    regex: "(.*)"
+                    target_label: mesh
+                  - source_labels:
+                      - __meta_kuma_dataplane
+                    regex: "(.*)"
+                    target_label: dataplane
+                  - action: labelmap
+                    regex: __meta_kuma_label_(.+)
+                kuma_sd_configs:
+                  - server: http://kong-mesh-control-plane.kong-mesh-system.svc:5676
         grafana:
           ingress:
             enabled: true
@@ -53,19 +69,19 @@ spec:
                 name: grafana-auth0-secret
                 key: client_secret
           persistence:
-            enabled: true  # enable persistence using Persistent Volumes
+            enabled: true # enable persistence using Persistent Volumes
           dashboardProviders:
             dashboardproviders.yaml:
               apiVersion: 1
               providers:
-              - name: 'default' # Configure a dashboard provider file to
-                orgId: 1        # put Kong dashboard into.
-                folder: ''
-                type: file
-                disableDeletion: false
-                editable: true
-                options:
-                  path: /var/lib/grafana/dashboards/default
+                - name: "default" # Configure a dashboard provider file to
+                  orgId: 1 # put Kong dashboard into.
+                  folder: ""
+                  type: file
+                  disableDeletion: false
+                  editable: true
+                  options:
+                    path: /var/lib/grafana/dashboards/default
           datasources:
             datasources.yaml:
               apiVersion: 1
@@ -79,8 +95,8 @@ spec:
           dashboards:
             default:
               kong-dashboard:
-                gnetId: 7424  # Install the following Grafana dashboard in the
-                revision: 11  # instance: https://grafana.com/dashboards/7424
+                gnetId: 7424 # Install the following Grafana dashboard in the
+                revision: 11 # instance: https://grafana.com/dashboards/7424
                 datasource: Prometheus
               kic-dashboard:
                 gnetId: 15662
