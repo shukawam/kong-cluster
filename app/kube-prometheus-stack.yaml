@@ -105,6 +105,12 @@ spec:
               kic-dashboard:
                 gnetId: 15662
                 datasource: Prometheus
+              kuma-cp:
+                gnetId: 13416
+                datasource: Prometheus
+              kuma-dataplane:
+                gnetId: 11775
+                datasource: Prometheus
   destination:
     server: https://kubernetes.default.svc
     namespace: observability
