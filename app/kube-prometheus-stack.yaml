@@ -59,6 +59,10 @@ spec:
               use_pkce: true
               use_refresh_token: true
               role_attribute_path: contains(https://shukawam.me/groups[*], 'grafana-admins') && 'Admin' || contains(https://shukawam.me/groups[*], 'grafana-guests') && 'Editor' || 'Viewer'
+            plugins:
+              allow_loading_unsigned_plugins: kumahq-kuma-datasource
+          plugins:
+            - kumahq-kuma-datasource
           envValueFrom:
             GF_AUTH_GENERIC_OAUTH_CLIENT_ID:
               secretKeyRef:
