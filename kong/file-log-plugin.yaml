@@ -6,6 +6,6 @@ metadata:
     kubernetes.io/ingress.class: kong
   labels:
     global: "true"
-plugin: opentelemetry
+plugin: file-log
 config:
   path: /dev/stdout
