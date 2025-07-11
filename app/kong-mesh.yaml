@@ -23,10 +23,6 @@ spec:
                 Key: license.json
             envVars:
               KUMA_TRACING_OPENTELEMETRY_ENABLED: true
-            ingress:
-              enabled: true
-              ingressClassName: kong
-              hostName: kong-mesh.shukawam.me
   destination:
     server: https://kubernetes.default.svc
     namespace: kong-mesh-system
