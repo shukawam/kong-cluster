@@ -1,5 +1,7 @@
 _format_version: "3.0"
 _transform: true
+_konnect:
+  control_plane_name: kubernetes-gateway
 
 services:
   - name: catalogue-service
@@ -28,7 +30,6 @@ plugins:
   - name: opentelemetry
     config:
       traces_endpoint: http://opentelemetry-collector.observability.svc.cluster.local:4318/v1/traces
-      logs_endpoint: http://opentelemetry-collector.observability.svc.cluster.local:4318/v1/logs
       resource_attributes:
         service.name: kong-otel-plugin
   - name: prometheus
