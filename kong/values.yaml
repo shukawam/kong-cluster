@@ -1,0 +1,47 @@
+image:
+  repository: kong/kong-gateway
+  tag: "3.11"
+
+secretVolumes:
+  - konnect-cluster-cert
+
+admin:
+  enabled: false
+
+env:
+  role: data_plane
+  database: "off"
+  cluster_mtls: pki
+  cluster_control_plane: 851372fee8.us.cp0.konghq.com:443
+  cluster_dp_labels: "type:docker-kubernetesOS"
+  cluster_server_name: 851372fee8.us.cp0.konghq.com
+  cluster_telemetry_endpoint: 851372fee8.us.tp0.konghq.com:443
+  cluster_telemetry_server_name: 851372fee8.us.tp0.konghq.com
+  cluster_cert: /etc/secrets/konnect-cluster-cert/tls.crt
+  cluster_cert_key: /etc/secrets/konnect-cluster-cert/tls.key
+  lua_ssl_trusted_certificate: system
+  konnect_mode: "on"
+  vitals: "off"
+  nginx_worker_processes: "1"
+  upstream_keepalive_max_requests: "100000"
+  nginx_http_keepalive_requests: "100000"
+  proxy_access_log: "off"
+  dns_stale_ttl: "3600"
+  router_flavor: expressions
+  kong_tracing_instrumentations: all
+  kong_tracing_sampling_rate: 1.0
+
+ingressController:
+  enabled: false
+  installCRDs: false
+
+proxy:
+  type: ClusterIP
+
+resources:
+  requests:
+    cpu: 1
+    memory: "2Gi"
+
+manager:
+  enabled: false
