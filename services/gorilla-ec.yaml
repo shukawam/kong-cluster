@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: carts
-          image: shuheikawamura243/carts:1.1.0
+          image: shuheikawamura243/carts:1.2.0
           imagePullPolicy: Always
           ports:
             - containerPort: 3002
