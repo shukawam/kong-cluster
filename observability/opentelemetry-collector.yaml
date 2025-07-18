@@ -12,19 +12,6 @@ spec:
             endpoint: 0.0.0.0:4317
           http:
             endpoint: 0.0.0.0:4318
-      # filelog:
-      #   include:
-      #     - /var/log/pods/*/*/*.log
-      #   exclude:
-      #     # Exclude logs from all containers named otel-collector
-      #     - /var/log/pods/*/otel-collector/*.log
-      #   start_at: end
-      #   include_file_path: true
-      #   include_file_name: false
-      #   operators:
-      #     # parse container logs
-      #     - type: container
-      #       id: container-parser
     processors:
       memory_limiter:
         check_interval: 1s
@@ -33,20 +20,11 @@ spec:
       batch:
         send_batch_size: 10000
         timeout: 10s
-
     exporters:
       debug: {}
       # --- Trace ---
       otlp/tempo:
         endpoint: tempo:4317
-        tls:
-          insecure: true
-      # --- Metrics ---
-      # prometheus:
-      #   endpoint: 0.0.0.0:8889
-      # --- Log ---
-      otlphttp/loki:
-        endpoint: http://loki-stack:3100/otlp
         tls:
           insecure: true
 
@@ -56,10 +34,3 @@ spec:
           receivers: [otlp]
           processors: [memory_limiter, batch]
           exporters: [otlp/tempo]
-        # metrics:
-        #   receivers: [otlp]
-        #   exporters: [debug, prometheus]
-        logs:
-          receivers: [otlp]
-          processors: [memory_limiter, batch]
-          exporters: [debug, otlphttp/loki]
