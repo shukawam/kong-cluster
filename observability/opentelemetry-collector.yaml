@@ -60,6 +60,6 @@ spec:
         #   receivers: [otlp]
         #   exporters: [debug, prometheus]
         logs:
-          receivers: [otlp, file-log]
+          receivers: [otlp]
           processors: [memory_limiter, batch]
           exporters: [debug, otlphttp/loki]
