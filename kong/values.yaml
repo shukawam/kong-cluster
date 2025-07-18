@@ -28,8 +28,8 @@ env:
   proxy_access_log: "off"
   dns_stale_ttl: "3600"
   router_flavor: expressions
-  kong_tracing_instrumentations: all
-  kong_tracing_sampling_rate: 1.0
+  tracing_instrumentations: all
+  tracing_sampling_rate: 1.0
 
 ingressController:
   enabled: false
