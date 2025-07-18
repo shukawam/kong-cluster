@@ -3,9 +3,6 @@ kind: Instrumentation
 metadata:
   name: gorilla-ec-instrumentation
 spec:
-  env:
-    - name: OTEL_TRACES_EXPORTER
-      value: otlp
   exporter:
     endpoint: http://opentelemetry-collector.observability.svc.cluster.local:4318
   propagators:
