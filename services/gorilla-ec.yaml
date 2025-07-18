@@ -17,6 +17,8 @@ spec:
       labels:
         app: carts
         part-of: gorilla-ec
+      annotations:
+        instrumentation.opentelemetry.io/inject-nodejs: "true"
     spec:
       containers:
         - name: carts
@@ -60,6 +62,8 @@ spec:
       labels:
         app: catalogue
         part-of: gorilla-ec
+      annotations:
+        instrumentation.opentelemetry.io/inject-nodejs: "true"
     spec:
       containers:
         - name: catalogue
@@ -103,6 +107,8 @@ spec:
       labels:
         app: orders
         part-of: gorilla-ec
+      annotations:
+        instrumentation.opentelemetry.io/inject-nodejs: "true"
     spec:
       containers:
         - name: orders
