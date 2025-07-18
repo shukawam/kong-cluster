@@ -31,7 +31,7 @@ plugins:
     config:
       traces_endpoint: http://opentelemetry-collector.observability.svc.cluster.local:4318/v1/traces
       resource_attributes:
-        service.name: kong-otel-plugin
+        service.name: kong-gateway
   - name: prometheus
     config:
       per_consumer: true
