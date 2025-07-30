@@ -4,6 +4,14 @@ metadata:
   name: opentelemetry
 spec:
   mode: daemonset
+  volumes:
+    - name: varlog
+      hostPath:
+        path: /var/log
+  volumeMounts:
+    - mountPath: /var/log
+      name: varlog
+      readOnly: true
   config:
     receivers:
       otlp:
@@ -12,6 +20,11 @@ spec:
             endpoint: 0.0.0.0:4317
           http:
             endpoint: 0.0.0.0:4318
+      filelog:
+        include:
+          - /var/log/pods/*/*/*.log
+        exclude:
+          - /var/log/pods/*/otel-collector/*.log
     processors:
       memory_limiter:
         check_interval: 1s
@@ -34,3 +47,7 @@ spec:
           receivers: [otlp]
           processors: [memory_limiter, batch]
           exporters: [otlp/tempo]
+        logs:
+          receivers: [filelog]
+          processors: [memory_limiter, batch]
+          exporters: [debug]
