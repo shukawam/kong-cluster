@@ -15,7 +15,8 @@ spec:
       value: |
         manager:
           collectorImage:
-            repository: otel/opentelemetry-collector-contrib:0.131.0
+            repository: ghcr.io/open-telemetry/opentelemetry-collector-releases/opentelemetry-collector-contrib
+            tag: 0.131.0
         admissionWebhooks:
           certManager:
             enabled: false
