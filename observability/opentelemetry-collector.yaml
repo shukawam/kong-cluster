@@ -35,7 +35,7 @@ spec:
         timeout: 10s
     exporters:
       debug:
-        verbosity: detail
+        verbosity: detailed
       # --- Trace ---
       otlp/tempo:
         endpoint: tempo:4317
