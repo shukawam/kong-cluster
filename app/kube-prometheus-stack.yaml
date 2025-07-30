@@ -103,8 +103,6 @@ spec:
                 datasource: Prometheus
               loki-dashboard:
                 gnetId: 13186
-                revision: 1
-                datasource: Loki
   destination:
     server: https://kubernetes.default.svc
     namespace: observability
