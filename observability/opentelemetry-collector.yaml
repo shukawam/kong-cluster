@@ -22,7 +22,8 @@ spec:
             endpoint: 0.0.0.0:4318
       filelog:
         include:
-          - /var/log/pods/*/*/*.log
+          # - /var/log/pods/*/*/*.log
+          - /var/log/kong/access.log
         exclude:
           - /var/log/pods/*/otel-collector/*.log
     processors:
@@ -48,7 +49,7 @@ spec:
           receivers: [otlp]
           processors: [memory_limiter, batch]
           exporters: [otlp/tempo]
-        # logs:
-        #   receivers: [filelog]
-        #   processors: [memory_limiter, batch]
-        #   exporters: [debug]
+        logs:
+          receivers: [filelog]
+          processors: [memory_limiter, batch]
+          exporters: [debug]
