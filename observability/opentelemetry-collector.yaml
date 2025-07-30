@@ -48,7 +48,7 @@ spec:
           receivers: [otlp]
           processors: [memory_limiter, batch]
           exporters: [otlp/tempo]
-        logs:
-          receivers: [filelog]
-          processors: [memory_limiter, batch]
-          exporters: [debug]
+        # logs:
+        #   receivers: [filelog]
+        #   processors: [memory_limiter, batch]
+        #   exporters: [debug]
