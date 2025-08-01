@@ -21,6 +21,7 @@ spec:
           http:
             endpoint: 0.0.0.0:4318
       filelog:
+        include_file_path: true
         include:
           - /var/log/pods/*/*/*.log
         exclude:
