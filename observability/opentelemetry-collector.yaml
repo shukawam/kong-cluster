@@ -25,7 +25,7 @@ spec:
         include:
           - /var/log/pods/*/*/*.log
         exclude:
-          - /var/log/pods/*/otel-collector/*.log
+          - /var/log/pods/*/otc-container/*.log
     processors:
       memory_limiter:
         check_interval: 1s
