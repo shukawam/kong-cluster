@@ -17,6 +17,10 @@ jobs:
         uses: kong/setup-deck@v1
         with:
           deck-version: 1.49.0
+      - name: Add tag for Global plugin
+        run: |
+          deck file add-tags -s deck/global/kong.yaml \
+            global
       - name: Add tag for Gorilla Market
         run: |
           deck file add-tags -s deck/gorilla-market/kong.yaml \
