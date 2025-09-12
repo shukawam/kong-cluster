@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - deck/**/*.yaml
+      - .github/workflows/sync-deck-config.yaml
   workflow_dispatch:
 
 jobs:
@@ -16,11 +17,17 @@ jobs:
         uses: kong/setup-deck@v1
         with:
           deck-version: 1.49.0
+      - name: Add tag for Gorilla Market
+        run: |
+          deck file add-tags -s deck/gorilla-market/kong.yaml \
+            gorilla-market
       - name: Diff current environment(Gorilla Market)
         run: |
           deck gateway diff deck/gorilla-market/kong.yaml \
+            --select-tag gorilla-market \
             --konnect-token ${{ secrets.KONNECT_TOKEN }}
       - name: Sync gateway config(Gorilla Market)
         run: |
           deck gateway sync deck/gorilla-market/kong.yaml \
+            --select-tag gorilla-market \
             --konnect-token ${{ secrets.KONNECT_TOKEN }}
