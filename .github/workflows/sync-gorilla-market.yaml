@@ -25,11 +25,11 @@ jobs:
             -o deck/gorilla-market/kong.yaml
       - name: Diff current environment
         run: |
-          deck gateway diff deck/gorilla-market/merged.yaml \
+          deck gateway diff deck/gorilla-market/kong.yaml \
             --select-tag gorilla-market \
             --konnect-token ${{ secrets.KONNECT_TOKEN }}
       - name: Sync gateway config
         run: |
-          deck gateway sync deck/gorilla-market/merged.yaml \
+          deck gateway sync deck/gorilla-market/kong.yaml \
             --select-tag gorilla-market \
             --konnect-token ${{ secrets.KONNECT_TOKEN }}
