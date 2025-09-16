@@ -21,9 +21,9 @@ jobs:
       - name: Merge global config
         run: |
           deck file merge \
-            -s deck/global/kong.yaml \
-            -s deck/konbot/basic.yaml \
-            -o deck/konbot/merged.yaml
+            -o deck/konbot/merged.yaml \
+            deck/global/kong.yaml \
+            deck/konbot/basic.yaml
       - name: Add tag
         run: |
           deck file add-tags -s deck/gorilla-market/merged.yaml \
