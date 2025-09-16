@@ -26,22 +26,22 @@ jobs:
             deck/gorilla-market/kong.yaml
       - name: Add tag
         run: |
-          deck file add-tags -s deck/gorilla-market/merged.yaml \
+          deck file add-tags \
+            -s deck/gorilla-market/merged.yaml \
+            -o deck/gorilla-market/merged.yaml \
             gorilla-market
-          deck file add-tags -s deck/konbot/merged.yaml \
-            konbot
       - name: Diff current environment
         run: |
-          deck gateway diff deck/gorilla-market/kong.yaml \
+          deck gateway diff deck/gorilla-market/merged.yaml \
             --select-tag gorilla-market \
             --konnect-token ${{ secrets.KONNECT_TOKEN }}
       - name: Diff current environment(Konbot)
         run: |
-          deck gateway diff deck/konbot/kong.yaml \
-            --select-tag konbot \
+          deck gateway diff deck/gorilla-market/merged.yaml \
+            --select-tag gorilla-market \
             --konnect-token ${{ secrets.KONNECT_TOKEN }}
       - name: Sync gateway config
         run: |
-          deck gateway sync deck/gorilla-market/kong.yaml \
+          deck gateway sync deck/gorilla-market/merged.yaml \
             --select-tag gorilla-market \
             --konnect-token ${{ secrets.KONNECT_TOKEN }}

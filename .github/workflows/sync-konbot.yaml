@@ -26,8 +26,6 @@ jobs:
             deck/konbot/basic.yaml
       - name: Add tag
         run: |
-          deck file add-tags -s deck/gorilla-market/merged.yaml \
-            gorilla-market
           deck file add-tags -s deck/konbot/merged.yaml \
             konbot
       - name: Diff current environment
