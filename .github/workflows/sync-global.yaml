@@ -1,4 +1,4 @@
-name: Sync decK config(Gorilla Market)
+name: Sync decK config(Global)
 
 on:
   push:
