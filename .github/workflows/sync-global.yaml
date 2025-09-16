@@ -1,11 +1,10 @@
-name: Sync decK config(Konbot)
+name: Sync decK config(Gorilla Market)
 
 on:
   push:
     paths:
       - deck/global/*.yaml
-      - deck/konbot/*.yaml
-      - .github/workflows/sync-konbot.yaml
+      - .github/workflows/sync-global.yaml
   workflow_dispatch:
 
 jobs:
@@ -13,24 +12,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
       - name: Setup deck
         uses: kong/setup-deck@v1
         with:
           deck-version: 1.49.0
       - name: Add tag
         run: |
-          deck file add-tags konbot \
-            -s deck/konbot/kong.yaml
+          deck file add-tags global \
+            -s deck/global/kong.yaml \
+            -o deck/global/kong.yaml
       - name: Diff current environment
         run: |
-          deck gateway diff \
-            deck/konbot/kong.yaml \
-            --select-tag konbot \
+          deck gateway diff deck/global/kong.yaml \
+            --select-tag global \
             --konnect-token ${{ secrets.KONNECT_TOKEN }}
       - name: Sync gateway config
         run: |
-          deck gateway sync \
-            deck/konbot/kong.yaml \
-            --select-tag konbot \
+          deck gateway sync deck/global/kong.yaml \
+            --select-tag global \
             --konnect-token ${{ secrets.KONNECT_TOKEN }}

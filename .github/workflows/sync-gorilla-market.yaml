@@ -18,24 +18,12 @@ jobs:
         uses: kong/setup-deck@v1
         with:
           deck-version: 1.49.0
-      - name: Merge global config
-        run: |
-          deck file merge \
-            -o deck/gorilla-market/merged.yaml \
-            deck/global/kong.yaml \
-            deck/gorilla-market/kong.yaml
       - name: Add tag
         run: |
-          deck file add-tags \
-            -s deck/gorilla-market/merged.yaml \
-            -o deck/gorilla-market/merged.yaml \
-            gorilla-market
+          deck file add-tags gorilla-market \
+            -s deck/gorilla-market/kong.yaml \
+            -o deck/gorilla-market/kong.yaml
       - name: Diff current environment
-        run: |
-          deck gateway diff deck/gorilla-market/merged.yaml \
-            --select-tag gorilla-market \
-            --konnect-token ${{ secrets.KONNECT_TOKEN }}
-      - name: Diff current environment(Konbot)
         run: |
           deck gateway diff deck/gorilla-market/merged.yaml \
             --select-tag gorilla-market \
