@@ -30,11 +30,11 @@ jobs:
             konbot
       - name: Diff current environment
         run: |
-          deck gateway diff deck/konbot/kong.yaml \
+          deck gateway diff deck/konbot/merged.yaml \
             --select-tag konbot \
             --konnect-token ${{ secrets.KONNECT_TOKEN }}
       - name: Sync gateway config
         run: |
-          deck gateway sync deck/konbot/kong.yaml \
+          deck gateway sync deck/konbot/merged.yaml \
             --select-tag konbot \
             --konnect-token ${{ secrets.KONNECT_TOKEN }}
