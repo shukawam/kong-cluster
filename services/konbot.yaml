@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: konbot
+  labels:
+    app: konbot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: konbot
+  template:
+    metadata:
+      labels:
+        app: konbot
+    spec:
+      containers:
+        - name: konbot
+          image: shuheikawamura243/konbot:0.1.1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8501
+          env:
+            - name: GATEWAY_ENDPOINT
+              value: http://my-kong-kong-proxy.kong.svc.cluster.local:80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: konbot
+  labels:
+    app: konbot
+spec:
+  ports:
+    - port: 8501
+      targetPort: 8501
+  selector:
+    app: konbot
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: konbot-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  ingressClassName: kong
+  tls:
+    - hosts:
+        - konbot.shukawam.me
+      secretName: shukawam-me-konbot-tls
+  rules:
+    - host: konbot.shukawam.me
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: konbot
+                port:
+                  number: 8501

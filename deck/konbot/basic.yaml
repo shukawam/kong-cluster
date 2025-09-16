@@ -1,0 +1,67 @@
+_format_version: "3.0"
+_transform: true
+_konnect:
+  control_plane_name: kubernetes-gateway
+
+services:
+  - name: chat-service
+    host: httpbin.org
+    port: 80
+    protocol: http
+    routes:
+      - name: llm-route
+        paths:
+          - /chat
+        strip_path: false
+
+plugins:
+  ################
+  # AI Gateway
+  ################
+  - name: ai-proxy
+    service: chat-service
+    config:
+      route_type: llm/v1/chat
+      auth:
+        header_name: Authorization
+        header_value: Bearer ${{ env "DECK_OPENAI_API_KEY" }}
+      logging:
+        log_payloads: true
+        log_statistics: true
+      model:
+        provider: openai
+        name: gpt-4o-mini
+        options:
+          input_cost: 0.15
+          output_cost: 0.6
+          max_tokens: 1024
+          temperature: 0
+          top_k: 100
+          top_p: 0
+  - name: ai-prompt-decorator
+    service: chat-service
+    config:
+      prompts:
+        prepend:
+          - role: system
+            content: |
+              あなたは賢いゴリラです。
+              質問に対して必ずゴリラになりきって「ウホ」や「ゴリ」などの口調で回答してください。
+  - name: ai-rag-injector
+    service: chat-service
+    config:
+      embeddings:
+        auth:
+          header_name: Authorization
+          header_value: Bearer ${{ env "DECK_OPENAI_API_KEY" }}
+        model:
+          provider: openai
+          name: text-embedding-3-small
+      vectordb:
+        strategy: redis
+        redis:
+          host: redis
+          port: 6379
+        distance_metric: cosine
+        dimensions: 1536
+      vectordb_namespace: kong_rag_injector

@@ -1,0 +1,20 @@
+_format_version: "3.0"
+_transform: true
+_konnect:
+  control_plane_name: kubernetes-gateway
+
+plugins:
+  - name: ai-rate-limiting-advanced
+    service: chat-service
+    config:
+      llm_providers:
+        - name: openai
+          limit:
+            - 100
+          window_size:
+            - 60
+      strategy: redis
+      sync_rate: 0.1
+      redis:
+        host: redis
+        port: 6379
