@@ -31,4 +31,5 @@ jobs:
           kongctl sync \
             -f konnect \
             --recursive \
-            --pat ${{ secrets.KONNECT_TOKEN }}
+            --pat ${{ secrets.KONNECT_TOKEN }} \
+            --auto-approve
