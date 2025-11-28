@@ -1,0 +1,23 @@
+control_planes:
+  - ref: azure-container-apps-cp
+    name: azure-container-apps
+    description: "Kong Gateway running on Azure Container Apps."
+    auth_type: pki_client_certs
+    cluster_type: CLUSTER_TYPE_CONTROL_PLANE
+    labels:
+      environment: azure
+  - ref: kubernetes-gateway-cp
+    name: kubernetes-gateway
+    description: "Kong Gateway running on Kubernetes."
+    auth_type: pki_client_certs
+    cluster_type: CLUSTER_TYPE_CONTROL_PLANE
+    labels:
+      environment: aws
+    hoge: ooo
+  - ref: local-gateway-cp
+    name: local-gateway
+    description: running on local machine(M4 Mac)
+    auth_type: pki_client_certs
+    cluster_type: CLUSTER_TYPE_CONTROL_PLANE
+    labels:
+      environment: local
