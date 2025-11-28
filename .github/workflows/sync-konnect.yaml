@@ -22,7 +22,13 @@ jobs:
           kongctl version
       - name: Plan Konnect settings
         run: |
-          kongctl plan -f konnect --recursive
+          kongctl plan \
+            -f konnect \
+            --recursive \
+            --pat ${{ secrets.KONNECT_TOKEN }}
       - name: Sync Konnect settings
         run: |
-          kongctl sync -f konnect --recursive
+          kongctl sync \
+            -f konnect \
+            --recursive \
+            --pat ${{ secrets.KONNECT_TOKEN }}
