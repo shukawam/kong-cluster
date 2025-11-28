@@ -13,7 +13,6 @@ control_planes:
     cluster_type: CLUSTER_TYPE_CONTROL_PLANE
     labels:
       environment: aws
-    hoge: ooo
   - ref: local-gateway-cp
     name: local-gateway
     description: running on local machine(M4 Mac)
