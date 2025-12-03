@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/shukawam/kong-ops
-    path: kubernetes/argocd/app
+    path: kubernetes/aks/argocd/app
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc

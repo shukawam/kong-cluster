@@ -6,7 +6,7 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: argocd
+  project: default
   source:
     repoURL: https://github.com/shukawam/kong-cluster
     path: kubernetes/aks/argocd/projects
