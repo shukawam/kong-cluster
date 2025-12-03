@@ -1,19 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd-projects
+  name: cluster-issuer
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: default
+  project: management
   source:
     repoURL: https://github.com/shukawam/kong-cluster
-    path: kubernetes/base/argocd/projects
+    path: kubernetes/base/gateway-api
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
   syncPolicy:
     automated:
       prune: true
