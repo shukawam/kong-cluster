@@ -1,21 +1,14 @@
 # kong-cluster
 
-Manifest files for Kong.
-
-## Set up your cluster(Docker Desktop)
-
-### Docker Desktop
-
-TODO
-
-### minikube
-
-TODO
-
-### EKS
-
-Run the following script.
+My ops files for Kong Gateway.
 
 ```sh
-eksctl create cluster -f cluster.yaml
+.
+├── .git
+├── .github    # Git Hub Actions
+├── deck       # decK configuration files
+├── docs       # Documentation files
+├── konnect    # Konnect configuration files (via kongctl)
+├── kubernetes # Kubernetes configuration files (Manifest, Helm charts, ...)
+└── scripts    # Utility scripts
 ```
