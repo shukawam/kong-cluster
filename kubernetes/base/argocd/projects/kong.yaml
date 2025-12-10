@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: kong
+  namespace: argocd
+spec:
+  description: Project for Kong related resources
+  destinations:
+    - namespace: kong
+      server: https://kubernetes.default.svc
+    - namespace: kong-system
+      server: https://kubernetes.default.svc
+    - namespace: kong-mesh-system
+      server: https://kubernetes.default.svc
+    - namespace: services
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: "*"
+  namespaceResourceWhitelist:
+    - group: "*"
+      kind: "*"
+  sourceRepos:
+    - "*"
