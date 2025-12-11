@@ -16,7 +16,11 @@ spec:
         image:
           tag: 2.0.5
         env:
-          ENABLE_CONTROLLER_KONNECT: true
+          enable_controller_konnect: true
+          enable_controller_gateway: true
+          enable_controller_controlplane: true
+          enable_controller_dataplane: true
+          enable_controller_konglicense: true
         global:
           webhooks:
             options:
